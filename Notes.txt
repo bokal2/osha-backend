@@ -1,0 +1,32 @@
+Creating gitignores files
+> https://www.toptal.com/developers/gitignore
+
+For proper linting
+> pip install autopep8
+> pip install pylint
+
+package library to check for untested code
+> pip install coverage
+
+create coveragerc file to ignore files
+--example---
+------------
+[run]
+source=authentication/, todos/,
+omit=
+    */virtualenvs/*
+    */migrations/*
+    */tests/*
+    */__init__.py
+---------------
+
+> coverage run manage.py test && coverage report && coverage html
+
+Swagger documentation
+> drf_yasg
+
+Tracing errors
+> import pdb
+> pdb.set_trace()
+
+
