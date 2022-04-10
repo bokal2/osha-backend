@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'todos',
     'authentication',
     'accounts',
+    'services',
 ]
 
 REST_FRAMEWORK = {

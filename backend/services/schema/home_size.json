@@ -1,0 +1,9 @@
+[
+    {"size": "Single Room"},
+    {"size": "Bedsitter"},
+    {"size": "1 Bed Room"},
+    {"size": "2 Bed Room"},
+    {"size": "3 Bed Room"},
+    {"size": "4 Bed Room"},
+    {"size": "More than 4"}
+]
