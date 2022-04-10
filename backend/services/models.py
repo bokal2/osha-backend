@@ -1,5 +1,6 @@
 from django.db import models
 from helpers.models import TrackingModel
+from authentication.models import User
 
 # Create your models here.
 
@@ -14,11 +15,30 @@ class Booking(TrackingModel):
         ("MORE", "More than 4"),
     ]
 
-    home_size = models.CharField(choices=ROOMS, default="ONE_BEDROOM", max_length=255)
-    booking_date = models.DateFied()
+    home_size = models.CharField(choices=ROOMS, default="ONE_BEDROOM", max_length=100)
+    booking_date = models.DateField()
     booking_time = models.TimeField()
     services = models.JSONField(default=dict)
     quantity = models.IntegerField(default=0)
+    client = models.ForeignKey(User, on_delete=models.CASCADE)
+    service_fee = models.FloatField()
+    paid = models.BooleanField()
+
+    def __str__(self) -> str:
+        return " {0} - Booking - {1}".format(self.client.full_name, self.created_at)
+
+class Process_booking(TrackingModel):
+    STATUSES = [
+        ("INPROGRESS", "InProgress"),
+        ("COMPLETE", "Complete"),
+        ("CANCELLED", "Cancelled")
+    ]
+    booking = models.ForeignKey(Booking, on_delete=models.SET_NULL, null=True)
+    status = models.CharField(choices=STATUSES, default="COMPLETE", max_length=100)
+    comments = models.TextField()
+
+    def __str__(self) -> str:
+        return "Processed booking on - {0}".format(self.created_at)
 
 
 
