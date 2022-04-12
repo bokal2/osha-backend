@@ -118,11 +118,9 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
     @property
     def token(self):
         tokens = RefreshToken.for_user(self)
-        return {
-            "refreshToken": str(tokens),
-            "accessToken": str(tokens.access_token)
-        }
+        return str(tokens.access_token)
 
