@@ -22,7 +22,8 @@ class Booking(TrackingModel):
     quantity = models.IntegerField(default=0)
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     service_fee = models.FloatField()
-    paid = models.BooleanField()
+    paid = models.BooleanField(default=False)
+    express = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return " {0} - Booking - {1}".format(self.client.full_name, self.created_at)
@@ -40,5 +41,16 @@ class Process_booking(TrackingModel):
     def __str__(self) -> str:
         return "Processed booking on - {0}".format(self.created_at)
 
+class Constituency(models.Model):
+    name = models.CharField(max_length=100)
+    active = models.BooleanField(default=True)
 
+    def __str__(self) -> str:
+        return self.name
+class Ward(models.Model):
+    constituency_name = models.ForeignKey(Constituency, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(max_length=100)
+    active = models.BooleanField(default=True)
 
+    def __str__(self) -> str:
+        return self.name
