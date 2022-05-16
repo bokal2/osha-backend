@@ -8,4 +8,6 @@ from .models import Profile
 class ProfileAPIView(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
+    lookup_field = "user"
     permission_classes = (IsAuthenticated,)
+
