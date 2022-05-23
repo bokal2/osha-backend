@@ -123,4 +123,3 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
     def token(self):
         tokens = RefreshToken.for_user(self)
         return str(tokens.access_token)
-
