@@ -1,6 +1,7 @@
 from django.db import models
 from helpers.models import TrackingModel
 from authentication.models import User
+from agents.models import Agent
 
 # Create your models here.
 
@@ -24,6 +25,8 @@ class Booking(TrackingModel):
     service_fee = models.FloatField()
     paid = models.BooleanField(default=False)
     express = models.BooleanField(default=False)
+    agent = models.ForeignKey(Agent, on_delete=models.SET_NULL, null=True)
+    rating = models.SmallIntegerField(default=0)
 
     def __str__(self) -> str:
         return " {0} - Booking - {1}".format(self.client.full_name, self.created_at)

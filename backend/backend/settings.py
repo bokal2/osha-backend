@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'authentication',
     'accounts',
     'services',
+    'agents',
 ]
 
 SWAGGER_SETTINGS = {

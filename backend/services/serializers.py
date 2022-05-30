@@ -17,10 +17,22 @@ class ConstituencySerializer(serializers.ModelSerializer):
     class Meta:
         model = Constituency
         fields = "__all__"
-        depth = 1
+
+    def __init__(self, *args, **kwargs):
+        super(ConstituencySerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 1
 
 class WardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ward
         fields = "__all__"
-        depth = 1
+
+    def __init__(self, *args, **kwargs):
+        super(WardSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 1
